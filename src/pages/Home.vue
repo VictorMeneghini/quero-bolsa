@@ -1,14 +1,25 @@
 <template>
-  <div class="main-container">
-    <div class="main-container__filter" />
+  <div class="home">
+    <div class="home__container">
+      <h1>Bolsas favoritas</h1>
+      <p>Adicione bolsas de cursos e faculdades do seu interesse e receba atualizações com as melhores ofertas disponíveis.</p>
+      <br>
+      <br>
+      <scholarship-card />
+      <modal />
+    </div>
   </div>
 </template>
 
 <script>
+import ScholarshipCard from '@/components/ScholarshipCard'
+import Modal from '@/components/Modal'
+
 export default {
   name: 'Home',
   components: {
-   
+   ScholarshipCard,
+   Modal
   },
   data() {
     return {
@@ -19,23 +30,12 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.main-container {
-  max-width: 980px;
-  margin: 0 auto;
-  padding: 10px 0px;
-  text-align: center;
+.home {
   flex: 1 0 auto;
 
-  &__filter {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    padding: 0 1rem;
-    margin-top: 1rem;
-
-    @media screen and (max-width: $medium) {
-      align-items: center;
-    }
+  &__container {
+    max-width: 1200px;
+    margin: 2rem auto;
   }
 }
 </style>

@@ -3,16 +3,18 @@
     <div class="header__content">
       <div class="header__content__info">
         <div class="header__content__info__about">
-          <img
+          <img 
+            svg-inline
             src="@/assets/svg/info.svg"
-            alt="whatsapp"
+            alt="example"
           >
           <span>Como funciona</span>
         </div>
         <div class="header__content__info__contact">
-          <img
+          <img 
+            svg-inline
             src="@/assets/svg/whatsapp.svg"
-            alt="whatsapp"
+            alt="example"
           >
           <div class="header__content__info__contact__message">
             <span>0800 123 2222</span>
@@ -30,9 +32,10 @@
       </div>
       <div class="header__content__user">
         <span>Nome Sobrenome</span>
-        <img
+        <img 
+          svg-inline
           src="@/assets/svg/user.svg"
-          alt="whatsapp"
+          alt="example"
         >
       </div>
     </div>
@@ -86,12 +89,20 @@ export default {
         span {
           margin: 0 .5rem;
         }
+
+        svg {
+          fill: $secundary-blue;
+        }
       }
 
       &__contact {
         flex-grow: 2;
         display: flex;
         align-items: center;
+
+        svg {
+          fill: $green;
+        }
 
         &__message {
           margin: 0 1rem;
@@ -121,10 +132,20 @@ export default {
       align-items: center;
       justify-content: flex-end;
 
-      img {
+      svg {
         margin: 1rem;
+        fill: $secundary-blue;
       }
     }
+
+    svg {
+      height: 22px;
+      width: 22px;
+    }
+  }
+
+  span, small {
+    font-weight: bold;
   }
 
   &__nav {

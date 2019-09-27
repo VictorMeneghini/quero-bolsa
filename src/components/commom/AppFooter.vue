@@ -3,28 +3,44 @@
     <div class="footer__info">
       <div class="footer__info__content">
         <div class="footer__info__content__item">
-          <img svg-inline svg-sprite class="icon" src="@/assets/svg/whatsapp.svg" alt="example" />
+          <img
+            svg-inline
+            src="@/assets/svg/whatsapp.svg"
+            alt="example"
+          >
           <div class="header__content__info__contact__message">
             <p>0800 123 2222</p>
             <small>Seg - Sex 8h-22h</small>
           </div>
         </div>
         <div class="footer__info__content__item">
-          <img svg-inline svg-sprite class="icon" src="@/assets/svg/chat.svg" alt="example" />
+          <img
+            svg-inline
+            src="@/assets/svg/chat.svg"
+            alt="example"
+          >
           <div class="header__content__info__contact__message">
             <p>Chat ao vivo</p>
             <small>Seg - Sex 8h-22h</small>
           </div>
         </div>
         <div class="footer__info__content__item">
-          <img svg-inline svg-sprite class="icon" src="@/assets/svg/message.svg" alt="example" />
+          <img
+            svg-inline
+            src="@/assets/svg/message.svg"
+            alt="example"
+          >
           <div class="header__content__info__contact__message">
             <p>Mande um e-mail</p>
             <small>Respondemos rapidinho</small>
           </div>
         </div>
         <div class="footer__info__content__item">
-          <img svg-inline svg-sprite class="icon" src="@/assets/svg/info.svg" alt="example" />
+          <img
+            svg-inline
+            src="@/assets/svg/info.svg"
+            alt="example"
+          >
           <div class="header__content__info__contact__message">
             <p>Central de ajuda</p>
             <small>Encontre todas as respostas</small>
@@ -33,7 +49,7 @@
       </div>
     </div>
     <div class="footer__made">
-      <h4>Feito com odio por VictorMeneghini</h4>
+      <h4>Feito com amor por VictorMeneghini</h4>
     </div>
   </footer>
 </template>
@@ -52,6 +68,15 @@ export default {
   background: $primary-blue;
   flex-shrink: 0;
   color: white;
+
+  p, small {
+    font-weight: bold;
+  }
+
+  svg {
+    fill: $white;
+    margin: 0 1rem;
+  }
   
   &__info {
     width: 100%;
