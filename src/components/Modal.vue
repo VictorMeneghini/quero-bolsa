@@ -5,17 +5,32 @@
       ref="modal"
       class="bh-modal"
     >
-      <div class="bh-modal__header">
-        <div class="">
-          <img
-            svg-inline
-            src="@/assets/svg/close.svg"
-            alt="example"
-          >
+      <div>
+        <div class="bh-modal__header">
+          <div class="">
+            <img
+              svg-inline
+              src="@/assets/svg/close.svg"
+              alt="example"
+            >
+          </div>
         </div>
-      </div>
-      <div class="bh-modal__content">
-        <select-component />    
+        <div class="bh-modal__content">
+          <h2>Adicionar bolsa</h2> 
+          <p>Filtre e adicione as bolsas de seu interesse.</p>
+          <br><br>
+          <div class="asd">
+            <div>
+              <p>selecione sua cidade</p>
+              <select-component />
+            </div>
+            <div>
+              <p>selecione sua cidade</p>
+              <select-component />
+              <checkbox-component />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </transition>
@@ -23,22 +38,16 @@
 
 <script>
 import SelectComponent from '@/components/SelectComponent'
+import CheckboxComponent from '@/components/CheckboxComponent'
 
 export default {
   name: 'Modal',
   components: {
-    SelectComponent
+    SelectComponent,
+    CheckboxComponent
   },
   props: {
     open: {
-      type: Boolean,
-      default: true,
-    },
-    title: {
-      type: String,
-      default: '',
-    },
-    backgroundCloses: {
       type: Boolean,
       default: true,
     },
@@ -52,6 +61,12 @@ export default {
 </script>
 
 <style lang="scss">
+.asd {
+  display: flex;
+  justify-content: space-between;
+
+}
+
 .bh {
   &-modal {
     position: fixed;
@@ -86,8 +101,9 @@ export default {
     &__content {
       max-width: 800px;
       margin: 1rem auto;
-      display: flex;
-      flex-direction: row;
+      // display: flex;
+      padding: 2rem;
+      // flex-direction: row;
       background-color: white;
       border: 1px solid grey;
     }
