@@ -1,5 +1,8 @@
 <template>
-  <div class="scholarship-card">
+  <div 
+    class="scholarship-card"
+    @click="$emit('clicked')"
+  >
     <img 
       svg-inline
       src="@/assets/svg/plus.svg"

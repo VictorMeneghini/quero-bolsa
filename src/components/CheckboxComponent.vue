@@ -2,18 +2,40 @@
   <div class="customCheckbox">
     <div class="row">
       <input
-        id="javascript"
+        :id="labelIndentifier"
+        v-model="value"
         type="checkbox"
-        checked
       >
-      <label for="javascript" />
+      <label :for="labelIndentifier">
+        <span v-show="showLabel"> {{ labelIndentifier }}</span>
+      </label>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'CheckboxComponent'
+  name: 'CheckboxComponent',
+  props: {
+    showLabel: {
+      type: Boolean,
+      default: true,
+    },
+    labelIndentifier: {
+      type: String || Number,
+      default: ''
+    }
+  },
+  data() {
+    return {
+      value: false
+    }
+  },
+  watch: {
+    value() {      
+      this.$emit('checkedValue', this.value);
+    }
+  }
 
 }
 </script>
@@ -25,15 +47,16 @@ export default {
 }
 
 .customCheckbox input[type="checkbox"]+label {
+  margin-right: 1rem;
   position: relative;
-  padding: 3px 0 0 40px;
+  padding: 1px 0 0 30px;
   cursor: pointer;
 }
 
 .customCheckbox input[type="checkbox"]+label:before {
   content: '';
   background: #fff;
-  border: 2px solid $primary-blue;
+  border: 1px solid $black;
   border-radius: 3px;
   height: 15px;
   width: 15px;
@@ -44,6 +67,7 @@ export default {
 
 .customCheckbox input[type="checkbox"]:checked+label:before {
   content: '';
+  border: 2px solid $primary-blue;
   background: $primary-blue;  
 }
 

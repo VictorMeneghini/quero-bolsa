@@ -5,15 +5,18 @@
       <p>Adicione bolsas de cursos e faculdades do seu interesse e receba atualizações com as melhores ofertas disponíveis.</p>
       <br>
       <br>
-      <scholarship-card />
-      <modal />
+      <scholarship-card @clicked="handleModal()" />
+      <modal 
+        :open.sync="openModal"
+        @closed="handleModal()"
+      />
     </div>
   </div>
 </template>
 
 <script>
 import ScholarshipCard from '@/components/ScholarshipCard'
-import Modal from '@/components/Modal'
+import Modal from '@/components/FormModal'
 
 export default {
   name: 'Home',
@@ -23,9 +26,14 @@ export default {
   },
   data() {
     return {
-      inputValue: ''
+      openModal: false
     };
   },
+  methods: {
+    handleModal() {
+     this.openModal = !this.openModal
+    }
+  }
 }
 </script>
 

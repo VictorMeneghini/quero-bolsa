@@ -17,15 +17,15 @@
     </div>
     <ul
       v-show="showOptions"
-      v-clickOut="test"
+      v-clickOut="clickOut"
       class="select-component__options"
     >
       <li
         v-for="(item, index) in options"
         :key="index"
-        @click.stop="choose(item.value)"
+        @click.stop="choose(item)"
       >
-        {{ item.value }}
+        {{ item }}
       </li>
     </ul>
   </div>
@@ -51,34 +51,14 @@ export default {
       }    
     }
   },
-  data(){
+  props: {
+    options: {
+      type: Array,
+      default: () => []
+    },
+  },
+  data() {
     return{
-      options: [
-        {
-          value: 'São José dos Campos'
-        },
-        {
-          value: 'ipsum'
-        },
-        {
-          value: 'dolor'
-        },
-        {
-          value: 'sit'
-        },
-        {
-          value: 'amet'
-        },
-        {
-          value: 'lorem'
-        },
-        {
-          value: 'ipsum'
-        },
-        {
-          value: 'sit'
-        },
-        ],
       showOptions: false,
       selected: ''
     }
@@ -90,13 +70,14 @@ export default {
     })
   },
   methods: {
-    test() {
+    clickOut() {
       this.showOptions = false  
     },
     choose(value) {
       this.showOptions = false
       if (value !== this.selected) {
         this.selected = value
+        this.$emit('selectedValue', this.selected)
       }
     }
   }
