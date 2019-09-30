@@ -8,12 +8,12 @@
         <p>resultado</p>
         <p>
           ordenar por 
-          <span>nome da Faculdade
+          <span class="college-list__content__filters__order">Nome da Faculdade
             <img
               svg-inline
               src="@/assets/svg/expand-button.svg"
               alt="example"
-              @click="closeModal()"
+              @click="orderByName()"
             >
           </span>
         </p>
@@ -39,7 +39,6 @@
 
 <script>
 import CollegeListItem from "@/components/CollegeListItem"
-import api from '@/services/request';
 
 
 export default {
@@ -55,7 +54,8 @@ export default {
   },
   data() {
     return {
-      selectedCourses: []
+      selectedCourses: [],
+      orderList: true,
     }
   },
   watch: {
@@ -67,13 +67,43 @@ export default {
     selectedItem(handleItem, item) {
       if (handleItem) {
         this.selectedCourses.push(item);
-        console.log(this.selectedCourses);
       } else {
        this.selectedCourses = this.selectedCourses.filter(i => i.uuid !== item.uuid);
-        console.log(this.selectedCourses);
       }
+    },
+    orderByName() {
+      if (this.orderList) {
+        this.coursesList = this.coursesList.sort(this.cresc);
+      } else {
+        this.coursesList = this.coursesList.sort(this.desc);
+      }
+      this.orderList = !this.orderList;
+    },
+    cresc(a, b) {
+      const genreA = a.university.name.toUpperCase();
+      const genreB = b.university.name.toUpperCase();
+      
+      let comparison = 0;
+      if (genreA > genreB) {
+        comparison = 1;
+      } else if (genreA < genreB) {
+        comparison = -1;
+      }  
+      return comparison;
+    },
+    desc(a, b) {
+      const genreA = a.university.name.toUpperCase();
+      const genreB = b.university.name.toUpperCase();
+      
+      let comparison = 0;
+      if (genreA > genreB) {
+        comparison = 1;
+      } else if (genreA < genreB) {
+        comparison = -1;
+      }  
+      return comparison * -1;
     }
-  }
+  }, 
 }
 </script>
 
@@ -89,6 +119,12 @@ export default {
       display: flex;
       justify-content: space-between;
       margin: 1rem 0;
+
+      &__order {
+        cursor: pointer;
+        color: $secundary-blue;
+        fill: $secundary-blue;
+      }
     }
 
     &__list {

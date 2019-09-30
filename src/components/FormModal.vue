@@ -16,7 +16,9 @@
             >
           </div>
         </div>
-        <div class="form-modal__content">
+        <form 
+          @submit.prevent="onSubmit()"
+          class="form-modal__content">
           <h2>Adicionar bolsa</h2> 
           <p>Filtre e adicione as bolsas de seu interesse.</p>
           <div class="form-modal__content__filters">
@@ -61,8 +63,21 @@
               </div>
             </div>
           </div>
-          <colleges-list :courses-list="filtered || courses" />
-        </div>
+          <colleges-list 
+            @selectedCourseList="addFavoritList($event)"
+            :courses-list="filtered || courses" />
+          <div class="form-modal__content__buttons">
+            
+            <button-component 
+              text="Cancel"
+            />
+            <button-component
+              :disabled="favoriteCourses.length <= 0"
+              ready
+              text="Adicionar bolsa(s)"
+            />
+          </div>
+        </form>
       </div>
     </div>
   </transition>
@@ -97,13 +112,12 @@ export default {
         openModal: this.open,
         filterBy: {},
         filtered: null,
+        favoriteCourses: [],
         courses: []
       }
     },
   computed: {
     courseList() {
-      console.log('entrou');
-      
       const filteredArray = new Set(this.courses.map(e => e.course.name));
       return [...filteredArray];
     },
@@ -157,6 +171,17 @@ export default {
         return element;        
       });
     },
+    addFavoritList(courses) {
+      this.favoriteCourses = courses;
+      console.log(this.favoriteCourses);
+    },
+    onSubmit() {
+      localStorage.setItem("savedData", JSON.stringify(this.favoriteCourses));
+    },
+    onCancel() {
+      console.log('dhsaudhsas');
+      
+    }
   },
 };
 </script>
@@ -196,9 +221,7 @@ export default {
     &__content {
       max-width: 800px;
       margin: 1rem auto;
-      // display: flex;
       padding: 2rem;
-      // flex-direction: row;
       background-color: white;
       border: 1px solid grey;
 
@@ -227,6 +250,15 @@ export default {
           &:first-child {
             margin-right: 2rem;
           }
+        }
+      }
+
+      &__buttons {
+        display: flex;
+        justify-content: flex-end;        
+
+        button {
+          margin: 0 .5rem;
         }
       }
     }

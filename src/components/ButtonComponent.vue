@@ -3,10 +3,12 @@
     <button
       :disabled="disabled"
       type="submit"
-      class="form-btn"
+      :class="{
+        'form-btn': true,
+        'form-btn--ready': ready
+      }"
     >
-      <span v-if="!disabled">{{ text }}</span>
-      <span v-else>{{ loadMessage }}</span>
+      <span>{{ text }}</span>
     </button>
   </div>
 </template>
@@ -23,15 +25,15 @@ export default {
       type: Boolean,
       default: false,
     },
-    loadMessage: {
-      type: String,
-      default: 'Loading...'
+    ready: {
+      type: Boolean,
+      default: false
     }
   }
 }
 </script>
 
-<style>
+<style lang="scss">
 button {
 	outline: none !important;
 	border: none;
@@ -43,7 +45,7 @@ button:hover {
 }
 
 .wrapper-login-form-btn {
-  width: 100%;
+  max-width: 300px;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -55,11 +57,10 @@ button:hover {
 }
 
 .form-btn {
-  font-family: Montserrat-Bold;
+  font-weight: bold;
   font-size: 15px;
   line-height: 1.5;
   color: #337ca7;
-  text-transform: uppercase;
   width: 100%;
   height: 42px;
   border: solid 1px #337ca7;
@@ -77,12 +78,18 @@ button:hover {
   -o-transition: all 0.4s;
   -moz-transition: all 0.4s;
   transition: all 0.4s;
+
+  &--ready {
+    color: $black;
+    background: $primary-yellow;
+    border: solid 1px $secundary-yellow;
+  }
 }
 
 button:disabled {
   background: #d2d2d3;
   color: #a7a7a7;
   cursor: not-allowed;
-  border: solid 2px #a7a7a7;
+  border: solid 1px #a7a7a7;
 }
 </style>

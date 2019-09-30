@@ -30,7 +30,7 @@
 
 <script>
 import CheckboxComponent from '@/components/CheckboxComponent';
-import {parseImageName} from '@/utils/index';
+
 
 export default {
   name: 'CollegeListItem',
