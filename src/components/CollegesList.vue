@@ -70,8 +70,7 @@ export default {
         console.log(this.selectedCourses);
       } else {
        this.selectedCourses = this.selectedCourses.filter(i => i.uuid !== item.uuid);
-       console.log(this.selectedCourses);
-       
+        console.log(this.selectedCourses);
       }
     }
   }

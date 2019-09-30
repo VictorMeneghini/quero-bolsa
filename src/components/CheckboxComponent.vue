@@ -1,15 +1,14 @@
 <template>
-  <div class="customCheckbox">
-    <div class="row">
-      <input
-        :id="labelIndentifier"
-        v-model="value"
-        type="checkbox"
-      >
-      <label :for="labelIndentifier">
-        <span v-show="showLabel"> {{ labelIndentifier }}</span>
-      </label>
-    </div>
+  <div class="checkbox-component">
+    <input
+      :disabled="!allow"
+      :id="labelIndentifier"
+      v-model="value"
+      type="checkbox"
+    >
+    <label :for="labelIndentifier">
+      <span v-show="showLabel"> {{ labelIndentifier }}</span>
+    </label>
   </div>
 </template>
 
@@ -24,6 +23,10 @@ export default {
     labelIndentifier: {
       type: String || Number,
       default: ''
+    },
+    allow: {
+      type: Boolean,
+      default: true
     }
   },
   data() {
@@ -40,54 +43,56 @@ export default {
 }
 </script>
 
-<style lang="scss">
-.customCheckbox input[type="checkbox"] {
-  position: absolute;
-  left: -9999px;
-}
+<style lang="scss" scoped>
+.checkbox-component {
 
-.customCheckbox input[type="checkbox"]+label {
-  margin-right: 1rem;
-  position: relative;
-  padding: 1px 0 0 30px;
-  cursor: pointer;
-}
+  input {
+    display: none;
 
-.customCheckbox input[type="checkbox"]+label:before {
-  content: '';
-  background: #fff;
-  border: 1px solid $black;
-  border-radius: 3px;
-  height: 15px;
-  width: 15px;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
+    &:checked+label:before {
+      content: '';
+      border: 2px solid $primary-blue;
+      background: $primary-blue;  
+    }
 
-.customCheckbox input[type="checkbox"]:checked+label:before {
-  content: '';
-  border: 2px solid $primary-blue;
-  background: $primary-blue;  
-}
+    &:checked+label:after {
+      opacity: 1;
+      transform: scale(1) rotate(-45deg);
+    }
+  }
 
-.customCheckbox input[type="checkbox"]+label:after {
-  content: '';
-  border-style: solid;
-  border-width: 0 0 2px 2px;
-  border-color: white;
-  width: 7px;
-  height: 5px;
-  position: absolute;
-  top: 6px;
-  left: 5px;
-  opacity: 0;
-  transform: scale(2) rotate(-45deg);
-  transition: transform 0.3s linear, opacity 0.3s linear;
-}
+  label {
+    margin-right: 1rem;
+    position: relative;
+    padding: 1px 0 0 30px;
+    cursor: pointer;
 
-.customCheckbox input[type="checkbox"]:checked+label:after {
-  opacity: 1;
-  transform: scale(1) rotate(-45deg);
+    &::before {
+      content: '';
+      background: #fff;
+      border: 1px solid $black;
+      border-radius: 3px;
+      height: 15px;
+      width: 15px;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+
+    &::after {
+      content: '';
+      border-style: solid;
+      border-width: 0 0 2px 2px;
+      border-color: white;
+      width: 7px;
+      height: 5px;
+      position: absolute;
+      top: 6px;
+      left: 5px;
+      opacity: 0;
+      transform: scale(2) rotate(-45deg);
+      transition: transform 0.3s linear, opacity 0.3s linear;
+    }
+  }
 }
 </style>

@@ -8,7 +8,7 @@
       />
       <img 
         class="college-list-item__image"
-        :src="courseImage"
+        :src="item.university.logo_url"
         alt=""
       >
       <div class="college-list-item__course">
@@ -41,12 +41,6 @@ export default {
     item: {
       type: Object,
       default:() =>{}
-    }
-  },
-  computed: {
-    courseImage(){
-      const universityName = parseImageName(this.item.university.name);
-      return require(`./../assets/img/${universityName}.png`);
     }
   },
   methods: {
