@@ -1,5 +1,7 @@
 # querobolsa
 
+take a look, it is alive here :D ==>  https://querobolsa.victormeneghini.com/
+
 ## Project setup
 ```
 yarn install
